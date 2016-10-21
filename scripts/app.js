@@ -1,28 +1,37 @@
 import GuardianAPIProxy from './modules/guardian-api-proxy';
 import Tab from './modules/tab';
+import TabPanelArticleList from './modules/tab-panel-list';
 
 class App {
   constructor() {
-    this._buildTabs();
+    this._buildDynamicTab();
+    this._enhanceExistingTab();
   }
 
-  _buildTabs() {
+  // Shows how progressive enhancement can be done with that
+  _enhanceExistingTab() {
+    const targetTab = document.querySelectorAll('.js-enhance-tab-target')[0];
+    const tab = new Tab(targetTab.children[0]);
+  }
+
+  // Shows how remote content get's fetched, rendered and added
+  _buildDynamicTab() {
     /* build tab component */
-    const tabTarget = document.querySelectorAll('[data-module="tab"]');
-    const tab = new Tab(tabTarget[0]);
+    const tab = new Tab();
+    tab.renderTo(document.querySelectorAll('[data-module="tab"]')[0]);
 
     const desiredData = [
       {
+        'page-size': 5,
         section: 'travel',
-        webTitle: 'Travel',
       },
       {
+        'page-size': 5,
         section: 'football',
-        webTitle: 'Football',
       },
       {
+        'page-size': 5,
         section: 'uk-news',
-        webTitle: 'UK News',
       }
     ];
 
@@ -30,12 +39,13 @@ class App {
     desiredData.forEach((item) => {
       new GuardianAPIProxy()
         .fetch(item)
-        .then((tabData) => {
-          tab.addPanel({
-            items: tabData,
-            section: item.section,
-            title: item.webTitle,
-          });
+        .then((xhr, data) => {
+          const content = new TabPanelArticleList({
+            items: data.response.results
+          }).render();
+          const tabTitle = data.response.results[0].sectionName;
+          const tabId = item.section;
+          tab.addPanel(tabTitle, tabId, content);
         });
     });
   }

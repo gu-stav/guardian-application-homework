@@ -5,6 +5,10 @@
     <title>A Tab-Component</title>
     <meta name="viewport"
           content="width=device-width, initial-scale=1" />
+
+    <link href="https://fonts.googleapis.com/css?family=Lora|Roboto"
+          rel="stylesheet">
+
     <link rel="stylesheet"
           href="/dist/styles/main.css" />
   </head>
@@ -16,12 +20,85 @@
           A Tab-Component
         </h1>
 
-        <a href="https://github.com/gustavpursche/guardian-application-homework">View Source</a>
-
         <div class="article__content">
-          <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+          <p class="article__teaser">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
 
-          <div data-module="tab"></div>
+          <aside data-module="tab"></aside>
+
+          <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+
+          <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+
+          <h2>Progressive Enhancement</h2>
+
+          <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+
+          <aside data-module="tab"
+                 class="js-enhance-tab-target">
+
+            <div class="tab"
+                 role="tablist"
+                 aria-live="polite">
+
+              <ul class="tab__header">
+                <li class="tab__header-item">
+                  <h3 class="tab__header-item-title"
+                      tabindex="0"
+                      aria-controls="tab-panel-content-sports"
+                      id="tab-panel-trigger-sports">
+                    Sports
+                  </h3>
+                </li>
+
+                <li class="tab__header-item">
+                  <h3 class="tab__header-item-title"
+                      tabindex="0"
+                      aria-controls="tab-panel-content-politics"
+                      id="tab-panel-trigger-another-politics">
+                    Politics
+                  </h3>
+                </li>
+              </ul>
+
+              <div class="tab__panel"
+                   role="tabpanel"
+                   id="tab-panel-content-sports"
+                   aria-labelledby="tab-panel-trigger-sports">
+
+                <h3 class="tab__panel-title">Sports</h3>
+
+                <ol>
+                  <li class="tab-list-item">
+                    <a href="http://theguargian.com"
+                       class="tab-list-item__title">A winners article</a>
+                  </li>
+                </ol>
+              </div>
+
+              <div class="tab__panel"
+                   role="tabpanel"
+                   id="tab-panel-content-another-politics"
+                   aria-labelledby="tab-panel-trigger-another-politics">
+
+                <h3 class="tab__panel-title">Politics</h3>
+
+                <ol>
+                  <li class="tab-list-item">
+                    <a href="http://theguargian.com"
+                       class="tab-list-item__title">Let's change the world</a>
+                  </li>
+                  <li class="tab-list-item">
+                    <a href="http://theguargian.com"
+                       class="tab-list-item__title">We want to see a difference!</a>
+                  </li>
+                  <li class="tab-list-item">
+                    <a href="http://theguargian.com"
+                       class="tab-list-item__title">Let's change us</a>
+                  </li>
+                </ol>
+              </div>
+            </div>
+          </aside>
 
           <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
 

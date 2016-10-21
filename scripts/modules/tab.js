@@ -1,50 +1,94 @@
-import {on, off} from 'delegated-events';
+import delegate from 'delegate-events';
 import TabPanel from './tab-panel';
 import TabTitle from './tab-title';
-import {addClass, removeClass, siblings, htmlToDOM} from '../utils';
+import {addClass, htmlToDOM} from '../utils';
+
+/*
+
+  Base component
+
+*/
 
 class TabComponent {
-  constructor(targetElement) {
+  constructor(element) {
     this._items = [];
-    this.element = htmlToDOM(`<div class="tab" role="tablist" aria-live="polite">
-      <ul class="tab__header"></ul>
-    </div>`);
-    this.target = targetElement.appendChild(this.element);
+    this.element = element || this.render();
+    this.collectPanels();
+    this._addBindings();
+    addClass(this.element, 'tab--is-initialized');
   }
 
-  addPanel(data) {
-    const title = new TabTitle(data);
-    const panel = new TabPanel(data);
-
-    this._items.push({
-      title: title,
-      panel: panel,
+  addPanel(titleText, id, content) {
+    const title = new TabTitle({
+      id: id,
+      title: titleText,
     });
 
-    // if a title is activated
-    title.onStateChange = (title) => {
-      this._items.forEach((item) => {
-        if (item.panel.data.section === title.data.section) {
-          item.panel.enable();
-          item.title.enable({omitEvent: true});
-        } else {
-          item.panel.disable();
-          item.title.disable({omitEvent: true});
-        }
-      });
-    };
+    const panel = new TabPanel({
+      title: title,
+      content: content,
+    });
 
-    // activate the first item
-    if (this._items.length === 1) {
-      title.enable();
-    }
-
-    this.getHeader().appendChild(title.element);
+    this._addPanel(panel);
+    this.getHeaderContainer().appendChild(panel.title.element);
     this.element.appendChild(panel.element);
   }
 
-  getHeader() {
-    return this.target.querySelectorAll('.tab__header')[0];
+  _addPanel(panel) {
+    this._items.push(panel);
+
+    // activate the first item
+    if (this._items.length === 1) {
+      panel.enable();
+    }
+  }
+
+  collectPanels() {
+    [].forEach.call(this.getHeaderContainer().children, (item) => {
+      const title = new TabTitle({
+        element: item,
+      });
+
+      console.log(title);
+
+      const panelElement = this.element.querySelectorAll(`[aria-labelledby="${title.id}"]`)[0];
+
+      const panel = new TabPanel({
+        element: panelElement,
+        title: title,
+        content: panelElement.innerHTML,
+      });
+
+      this._addPanel(panel);
+    });
+  }
+
+  getHeaderContainer() {
+    return this.element.querySelectorAll('.tab__header')[0];
+  }
+
+  renderTo(target) {
+    target.appendChild(this.element);
+  }
+
+  _addBindings() {
+    delegate.bind(this.element, '.tab__header-item-title', 'click', (event) => {
+      const targetId = event.target.id;
+
+      this._items.forEach((item) => {
+        if (item.title.id === targetId) {
+          item.enable();
+        } else {
+          item.disable();
+        }
+      });
+    });
+  }
+
+  render() {
+    return htmlToDOM(`<div class="tab" role="tablist" aria-live="polite">
+      <ul class="tab__header"></ul>
+    </div>`);
   }
 }
 

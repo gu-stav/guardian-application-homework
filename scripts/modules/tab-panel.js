@@ -1,43 +1,35 @@
 import {addClass, removeClass, htmlToDOM} from '../utils';
 
+/*
+
+  Panel
+
+*/
+
 class TabPanel {
   constructor(data) {
-    this.data = data;
-    this.active = false;
+    this.title = data.title;
     this.activeClass = 'tab__panel--is-active';
-    this.element = this.render();
-  }
-
-  addTitle(title) {
-    this.title = title;
+    this.element = data.element || this.render();
+    this.element.innerHTML = data.content || '';
   }
 
   enable() {
     addClass(this.element, this.activeClass);
+    this.title.enable();
   }
 
   disable() {
     removeClass(this.element, this.activeClass);
+    this.title.disable();
   }
 
   render() {
-    let panelContentMarkup = '';
-    const activeClass = this.active === true ? this.activeClass : '';
-
-    this.data.items.forEach((item) => {
-      panelContentMarkup += `<li class="tab-list-item">
-        <a href="${item.webUrl}"
-           class="tab-list-item__title">${item.webTitle}</a>
-      </li>`;
-    });
-
-    const viewString = `<div class="tab__panel ${activeClass}"
+    const viewString = `<div class="tab__panel"
          role="tabpanel"
-         id="tab-panel-content-${this.data.section}"
-         aria-labelledby="tab-panel-trigger-${this.data.section}">
-      <ol>${panelContentMarkup}</ol>
+         id="${this.title.id}"
+         aria-labelledby="${this.title.id}">
     </div>`;
-
     return htmlToDOM(viewString);
   }
 }

@@ -11,7 +11,7 @@
   }
 
   &__header {
-    display: flex;
+    display: none;
     list-style: none;
     margin-bottom: 0;
     margin-top: 0;
@@ -23,47 +23,67 @@
       &-title {
         background-color: $guardian-grey-dark;
         color: $guardian-blue;
-        font-family: Arial;
+        font-family: 'Loto', serif;
         font-size: 1.2rem;
         font-weight: bold;
+        letter-spacing: .02rem;
         line-height: 1.2;
         margin-bottom: 0;
         margin-top: 0;
-        padding: .8rem 1.3rem .5rem 1.3rem;
+        padding: 1rem 1.3rem .5rem 1.3rem;
 
         &:hover,
         &:focus {
-          background-color: $guardian-blue-dark;
+          background-color: $guardian-blue;
           color: white;
           cursor: pointer;
           outline: none;
         }
-      }
 
-      &--is-active &-title {
-        background-color: transparent;
-        box-shadow: 0 4px 0 0 $guardian-blue;
-        color: white;
+        &--is-active {
+          background-color: transparent;
+          border-top: .3rem solid $guardian-blue-dark;
+          box-shadow: 0 4px 0 0 $guardian-blue;
+          color: white;
+          padding-top: .7rem;
+        }
       }
     }
   }
 
   &__panel {
     border-top: 2px solid white;
-    /* not ideal in case the component is pre-rendered on the server. This
-       should be done only after the component was sucessfully initialized
-       by js on the client */
-    display: none;
     padding: .8rem 1.3rem;
 
     > ol {
       margin-bottom: 0;
       margin-top: 0;
-      padding-left: 1rem;
+      padding-left: 0;
     }
 
-    &--is-active {
-      display: block;
+    &-title {
+      font-family: Arial;
+      font-size: 1.1rem;
+      margin-bottom: .5rem;
+      margin-top: 0;
+      text-transform: uppercase;
     }
+  }
+
+  // progressive disclosure
+  &--is-initialized &__header {
+    display: flex;
+  }
+
+  &--is-initialized &__panel {
+    display: none;
+  }
+
+  &--is-initialized &__panel--is-active {
+    display: block;
+  }
+
+  &--is-initialized &__panel-title {
+    display: none;
   }
 }
