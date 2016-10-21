@@ -1,7 +1,5 @@
-import {on, off} from 'delegated-events';
 import TabPanel from './tab-panel';
 import TabTitle from './tab-title';
-import {addClass, removeClass, siblings, htmlToDOM} from '../utils';
 
 class TabComponent {
   constructor(targetElement) {
