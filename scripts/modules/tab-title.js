@@ -17,10 +17,6 @@ class TabTitle {
     this._addBindings();
   }
 
-  addPanel(panel) {
-    this.panel = panel;
-  }
-
   _addBindings() {
     this.element.addEventListener('click', (event) => {
       event.preventDefault();
@@ -38,6 +34,7 @@ class TabTitle {
 
   disable(options) {
     removeClass(this.element, this.activeClass);
+
     if (!options || options && (options.omitEvent !== true)) {
       this.onStateChange(this);
     }

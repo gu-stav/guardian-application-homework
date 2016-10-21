@@ -1,5 +1,6 @@
 import TabPanel from './tab-panel';
 import TabTitle from './tab-title';
+import {htmlToDOM} from '../utils';
 
 class TabComponent {
   constructor(targetElement) {
@@ -19,7 +20,7 @@ class TabComponent {
       panel: panel,
     });
 
-    // if a title is activated
+    // title is activated
     title.onStateChange = (title) => {
       this._items.forEach((item) => {
         if (item.panel.data.section === title.data.section) {
@@ -37,11 +38,11 @@ class TabComponent {
       title.enable();
     }
 
-    this.getHeader().appendChild(title.element);
+    this.getHeaderContainer().appendChild(title.element);
     this.element.appendChild(panel.element);
   }
 
-  getHeader() {
+  getHeaderContainer() {
     return this.target.querySelectorAll('.tab__header')[0];
   }
 }

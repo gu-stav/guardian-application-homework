@@ -8,21 +8,20 @@ class App {
 
   _buildTab() {
     /* build tab component */
-    const tabTarget = document.querySelectorAll('[data-module="tab"]');
-    const tab = new Tab(tabTarget[0]);
+    const tab = new Tab(document.querySelectorAll('[data-module="tab"]')[0]);
 
     const desiredData = [
       {
         section: 'travel',
-        webTitle: 'Travel',
+        title: 'Travel',
       },
       {
         section: 'football',
-        webTitle: 'Football',
+        title: 'Football',
       },
       {
         section: 'uk-news',
-        webTitle: 'UK News',
+        title: 'UK News',
       }
     ];
 
@@ -34,7 +33,7 @@ class App {
           tab.addPanel({
             items: tabData,
             section: item.section,
-            title: item.webTitle,
+            title: item.title,
           });
         });
     });

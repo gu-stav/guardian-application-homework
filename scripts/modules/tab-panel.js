@@ -8,10 +8,6 @@ class TabPanel {
     this.element = this.render();
   }
 
-  addTitle(title) {
-    this.title = title;
-  }
-
   enable() {
     addClass(this.element, this.activeClass);
   }
