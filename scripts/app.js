@@ -1,6 +1,7 @@
 import GuardianAPIProxy from './modules/guardian-api-proxy';
 import Tab from './modules/tab';
 import TabPanelArticleList from './modules/tab-panel-list';
+import {DOMready} from './utils';
 
 class App {
   constructor() {
@@ -51,4 +52,6 @@ class App {
   }
 }
 
-new App();
+DOMready(() => {
+  new App();
+});

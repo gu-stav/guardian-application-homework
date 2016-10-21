@@ -49,8 +49,6 @@ class TabComponent {
         element: item,
       });
 
-      console.log(title);
-
       const panelElement = this.element.querySelectorAll(`[aria-labelledby="${title.id}"]`)[0];
 
       const panel = new TabPanel({
