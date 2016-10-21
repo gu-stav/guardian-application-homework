@@ -9,7 +9,7 @@ import qwest from 'qwest';
 class Proxy {
   constructor() {
     this.API_KEY = '9wur7sdh84azzazdt3ye54k4';
-    this.API_BASE = 'http://content.guardianapis.com/search';
+    this.API_BASE = 'https://content.guardianapis.com/search';
   }
 
   fetch(data) {
