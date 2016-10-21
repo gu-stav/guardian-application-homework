@@ -11,3 +11,12 @@ npm install
 ```bash
 npm run build
 ```
+
+## Possible improvements
+
+- Add a better Tab API: `new Tab([ panelInstance, panelInstance ])`
+- Date formatting
+- No-JS Fallback with `:target`
+- Load Remote Content once a tab becomes active
+- Make component declarative & follow reactive conventions
+- Tests :)

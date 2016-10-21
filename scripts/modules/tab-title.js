@@ -1,5 +1,11 @@
 import {addClass, removeClass, htmlToDOM} from '../utils';
 
+/*
+
+  Panel-Title
+
+*/
+
 class TabTitle {
   constructor(data) {
     this.activeClass = 'tab__header-item-title--is-active';
@@ -7,20 +13,24 @@ class TabTitle {
     if (data.element) {
       this.title = data.element.children[0].textContent;
       this.id = data.element.children[0].id;
-      this.element = data.element;
     } else {
       this.title = data.title;
       this.id = data.id;
-      this.element = this.render();
     }
+
+    this.element = data.element || this.render();
+  }
+
+  getTrigger() {
+    return this.element.children[0];
   }
 
   enable() {
-    addClass(this.element.children[0], this.activeClass);
+    addClass(this.getTrigger(), this.activeClass);
   }
 
   disable() {
-    removeClass(this.element.children[0], this.activeClass);
+    removeClass(this.getTrigger(), this.activeClass);
   }
 
   render() {

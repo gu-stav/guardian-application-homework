@@ -8,16 +8,13 @@ class App {
     this._enhanceExistingTab();
   }
 
+  // Shows how progressive enhancement can be done with that
   _enhanceExistingTab() {
-    const triggerElement = document.querySelectorAll('.js-enhance-tab')[0];
     const targetTab = document.querySelectorAll('.js-enhance-tab-target')[0];
-
-    triggerElement.addEventListener('click', (event) => {
-      event.preventDefault();
-      const tab = new Tab(targetTab.children[0]);
-    });
+    const tab = new Tab(targetTab.children[0]);
   }
 
+  // Shows how remote content get's fetched, rendered and added
   _buildDynamicTab() {
     /* build tab component */
     const tab = new Tab();
@@ -27,17 +24,14 @@ class App {
       {
         'page-size': 5,
         section: 'travel',
-        title: 'Travel',
       },
       {
         'page-size': 5,
         section: 'football',
-        title: 'Football',
       },
       {
         'page-size': 5,
         section: 'uk-news',
-        title: 'UK News',
       }
     ];
 
@@ -45,9 +39,13 @@ class App {
     desiredData.forEach((item) => {
       new GuardianAPIProxy()
         .fetch(item)
-        .then((tabData) => {
-          const content = new TabPanelArticleList({items: tabData}).render();
-          tab.addPanel(item.title, item.section, content);
+        .then((xhr, data) => {
+          const content = new TabPanelArticleList({
+            items: data.response.results
+          }).render();
+          const tabTitle = data.response.results[0].sectionName;
+          const tabId = item.section;
+          tab.addPanel(tabTitle, tabId, content);
         });
     });
   }

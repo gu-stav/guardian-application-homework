@@ -1,3 +1,9 @@
+/*
+
+  Article List with a Panel
+
+*/
+
 class TabPanelArticleList {
   constructor(data) {
     this.data = data;

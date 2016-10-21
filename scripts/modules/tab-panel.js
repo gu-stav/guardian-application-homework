@@ -1,17 +1,17 @@
 import {addClass, removeClass, htmlToDOM} from '../utils';
 
+/*
+
+  Panel
+
+*/
+
 class TabPanel {
   constructor(data) {
     this.title = data.title;
     this.activeClass = 'tab__panel--is-active';
-
-    if (data.element) {
-      this.element = data.element;
-    } else {
-      this.element = this.render();
-    }
-
-    this.element.innerHTML = data.content;
+    this.element = data.element || this.render();
+    this.element.innerHTML = data.content || '';
   }
 
   enable() {

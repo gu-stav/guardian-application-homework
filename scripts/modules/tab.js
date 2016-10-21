@@ -3,17 +3,17 @@ import TabPanel from './tab-panel';
 import TabTitle from './tab-title';
 import {addClass, htmlToDOM} from '../utils';
 
+/*
+
+  Base component
+
+*/
+
 class TabComponent {
   constructor(element) {
     this._items = [];
-
-    if (element) {
-      this.element = element;
-      this.collectPanels();
-    } else {
-      this.element = this.render();
-    }
-
+    this.element = element || this.render();
+    this.collectPanels();
     this._addBindings();
     addClass(this.element, 'tab--is-initialized');
   }
@@ -48,6 +48,8 @@ class TabComponent {
       const title = new TabTitle({
         element: item,
       });
+
+      console.log(title);
 
       const panelElement = this.element.querySelectorAll(`[aria-labelledby="${title.id}"]`)[0];
 
