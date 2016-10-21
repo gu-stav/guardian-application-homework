@@ -1,0 +1,18 @@
+.article {
+  &__title {
+    font-family: Arial;
+    font-size: 2.4rem;
+  }
+
+  &__content {
+    font-size: 1.2rem;
+    line-height: 1.2;
+
+    > div[data-module="tab"] {
+      @include small {
+        float: left;
+        margin: 0 1.5rem 1.5rem -10rem;
+      }
+    }
+  }
+}

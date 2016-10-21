@@ -1,0 +1,20 @@
+.tab-list-item {
+  font-size: .95rem;
+
+  &__title {
+    color: currentColor;
+    display: block;
+    padding-bottom: .5rem;
+    padding-top: .5rem;
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+    }
+  }
+
+  & + & {
+    border-top: 1px solid white;
+  }
+}
