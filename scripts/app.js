@@ -25,14 +25,17 @@ class App {
 
     const desiredData = [
       {
+        'page-size': 5,
         section: 'travel',
         title: 'Travel',
       },
       {
+        'page-size': 5,
         section: 'football',
         title: 'Football',
       },
       {
+        'page-size': 5,
         section: 'uk-news',
         title: 'UK News',
       }
