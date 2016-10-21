@@ -3,10 +3,10 @@ import Tab from './modules/tab';
 
 class App {
   constructor() {
-    this._buildTabs();
+    this._buildTab();
   }
 
-  _buildTabs() {
+  _buildTab() {
     /* build tab component */
     const tabTarget = document.querySelectorAll('[data-module="tab"]');
     const tab = new Tab(tabTarget[0]);
