@@ -18,5 +18,6 @@ npm run build
 - Date formatting
 - No-JS Fallback with `:target`
 - Load Remote Content once a tab becomes active
+- Message bus/ Event system for Title <-> Panel communication
 - Make component declarative & follow reactive conventions
 - Tests :)
