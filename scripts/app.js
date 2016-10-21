@@ -1,14 +1,27 @@
 import GuardianAPIProxy from './modules/guardian-api-proxy';
 import Tab from './modules/tab';
+import TabPanelArticleList from './modules/tab-panel-list';
 
 class App {
   constructor() {
-    this._buildTab();
+    this._buildDynamicTab();
+    this._enhanceExistingTab();
   }
 
-  _buildTab() {
+  _enhanceExistingTab() {
+    const triggerElement = document.querySelectorAll('.js-enhance-tab')[0];
+    const targetTab = document.querySelectorAll('.js-enhance-tab-target')[0];
+
+    triggerElement.addEventListener('click', (event) => {
+      event.preventDefault();
+      const tab = new Tab(targetTab.children[0]);
+    });
+  }
+
+  _buildDynamicTab() {
     /* build tab component */
-    const tab = new Tab(document.querySelectorAll('[data-module="tab"]')[0]);
+    const tab = new Tab();
+    tab.renderTo(document.querySelectorAll('[data-module="tab"]')[0]);
 
     const desiredData = [
       {
@@ -30,11 +43,8 @@ class App {
       new GuardianAPIProxy()
         .fetch(item)
         .then((tabData) => {
-          tab.addPanel({
-            items: tabData,
-            section: item.section,
-            title: item.title,
-          });
+          const content = new TabPanelArticleList({items: tabData}).render();
+          tab.addPanel(item.title, item.section, content);
         });
     });
   }
