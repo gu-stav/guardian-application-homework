@@ -1,14 +1,14 @@
 .tab-list-item {
+  border-bottom: 1px solid lighten($guardian-blue, 2%);
   font-size: .95rem;
   list-style: none;
 
   &__title {
     color: currentColor;
     font-family: 'Roboto', serif;
-    font-size: 1.15rem;
+    font-size: 1.05rem;
     display: block;
-    padding-bottom: .8rem;
-    padding-top: .8rem;
+    padding: 1rem;
     text-decoration: none;
 
     &:hover,
@@ -24,6 +24,6 @@
   }
 
   & + & {
-    border-top: 1px solid white;
+    border-top: 1px solid $guardian-blue-dark;
   }
 }

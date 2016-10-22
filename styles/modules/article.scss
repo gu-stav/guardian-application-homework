@@ -1,23 +1,38 @@
 .article {
   &__title {
     font-family: 'Lora', serif;
-    font-size: 2.4rem;
+    font-size: 3rem;
+    margin-bottom: .5rem;
+  }
+
+  &__subheadline {
+    font-family: 'Lora', serif;
+    font-size: 1.8rem;
+    margin-top: 4rem;
   }
 
   &__teaser {
     font-size: 1.5rem;
+    margin-top: 0;
+  }
+
+  &__sidebar {
+    @include small {
+      float: left;
+      margin: 0 1.5rem 1.5rem -4rem;
+    }
+
+    &--float-right {
+      @include small {
+        float: right;
+        margin: 0 -4rem 1.5rem 1.5rem;
+      }
+    }
   }
 
   &__content {
     font-family: 'Roboto', serif;
     font-size: 1.2rem;
     line-height: 1.2;
-
-    > [data-module="tab"] {
-      @include small {
-        float: left;
-        margin: 0 1.5rem 1.5rem -7rem;
-      }
-    }
   }
 }
