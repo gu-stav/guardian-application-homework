@@ -10,10 +10,10 @@ class TabPanelArticleList {
   }
 
   render() {
-    let panelContentMarkup = '';
+    let content = '';
 
     this.data.items.forEach((item) => {
-      panelContentMarkup += `<li class="tab-list-item">
+      content += `<li class="tab-list-item">
         <a href="${item.webUrl}"
            class="tab-list-item__title">
           <span class="tab-list-item__date">
@@ -26,7 +26,7 @@ class TabPanelArticleList {
       </li>`;
     });
 
-    return `<ol>${panelContentMarkup}</ol>`;
+    return `<ol>${content}</ol>`;
   }
 }
 

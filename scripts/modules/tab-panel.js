@@ -25,12 +25,7 @@ class TabPanel {
   }
 
   render() {
-    const viewString = `<div class="tab__panel"
-         role="tabpanel"
-         id="${this.title.id}"
-         aria-labelledby="${this.title.id}">
-    </div>`;
-    return htmlToDOM(viewString);
+    return htmlToDOM(`<div class="tab__panel" role="tabpanel" id="panel-${this.title.id}" aria-labelledby="${this.title.id}"></div>`);
   }
 }
 

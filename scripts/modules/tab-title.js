@@ -35,7 +35,10 @@ class TabTitle {
 
   render() {
     return htmlToDOM(`<li class="tab__header-item">
-      <h2 class="tab__header-item-title" tabindex="0" id="${this.id}" aria-controls="${this.id}">
+      <h2 class="tab__header-item-title"
+          tabindex="0"
+          id="${this.id}"
+          aria-controls="panel-${this.id}">
         ${this.title}
       </h2>
     </li>`);
