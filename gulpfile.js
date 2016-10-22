@@ -9,7 +9,7 @@ const webpack = require('webpack-stream');
 gulp.task('scripts', () => {
   return gulp.src('scripts/app.js')
     .pipe(webpack({
-      entry: './scripts/app.js',
+      entry: './scripts/main.js',
       module: {
         loaders: [
           {

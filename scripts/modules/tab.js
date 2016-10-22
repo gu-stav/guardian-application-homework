@@ -20,21 +20,21 @@ class TabComponent {
 
   addPanel(titleText, id, content) {
     const title = new TabTitle({
-      id: id,
+      id,
       title: titleText,
     });
 
     const panel = new TabPanel({
-      title: title,
-      content: content,
+      title,
+      content,
     });
 
-    this._addPanel(panel);
+    this._savePanel(panel);
     this.getHeaderContainer().appendChild(panel.title.element);
     this.element.appendChild(panel.element);
   }
 
-  _addPanel(panel) {
+  _savePanel(panel) {
     this._items.push(panel);
 
     // activate the first item
@@ -57,7 +57,7 @@ class TabComponent {
         content: panelElement.innerHTML,
       });
 
-      this._addPanel(panel);
+      this._savePanel(panel);
     });
   }
 

@@ -1,7 +1,6 @@
 import GuardianAPIProxy from './modules/guardian-api-proxy';
 import Tab from './modules/tab';
 import TabPanelArticleList from './modules/tab-panel-list';
-import {DOMready} from './utils';
 
 class App {
   constructor() {
@@ -18,29 +17,26 @@ class App {
   // Shows how remote content get's fetched, rendered and added
   _buildDynamicTab() {
     const renderTarget = document.querySelectorAll('[data-module="tab"]')[0];
-    const tab = new Tab().renderTo(renderTarget);
-    const fetchItemAndBuildTab = (item) => {
-      const requestData = {
+    const tab = new Tab();
+    const fetchItemAndBuildTab = (section) => {
+      const reqData = {
         'page-size': 5,
-        section: item,
+        section,
       };
-
       new GuardianAPIProxy()
-        .fetch(requestData)
+        .fetch(reqData)
         .then((xhr, data) => {
           const content = new TabPanelArticleList({
             items: data.response.results
           }).render();
-          const tabTitle = data.response.results[0].sectionName;
-          const tabId = requestData.section;
-          tab.addPanel(tabTitle, tabId, content);
+          const firstResult = data.response.results[0];
+          tab.addPanel(firstResult.sectionName, firstResult.sectionId, content);
         });
     };
 
+    tab.renderTo(renderTarget);
     ['travel', 'football', 'uk-news'].forEach(fetchItemAndBuildTab);
   }
 }
 
-DOMready(() => {
-  new App();
-});
+export default App;
